@@ -57,7 +57,6 @@ if ($TargetAccount) {
     try {
         # Retrieve the password as plain text, then convert to SecureString
         $plainPassword = Get-PASAccountPassword -AccountID $TargetAccount.ID
-        $retrievedPassword = ConvertTo-SecureString $plainPassword -AsPlainText -Force
     } catch {
         Write-Error "Failed to retrieve the password from CyberArk."
         exit 1
@@ -82,7 +81,7 @@ try {
 # Update the backup system credential with the new password
 try {
     # Replace 'Set-BackupCredentials' with your backup system's cmdlet
-    Set-BackupCredentials -Credential $backupCredential -Password $retrievedPassword
+    Set-BackupCredentials -Credential $backupCredential -Password $plainPassword
     Write-Host "Backup system credentials updated successfully."
 } catch {
     Write-Error "Failed to update backup system credentials."
