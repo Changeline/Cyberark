@@ -22,6 +22,15 @@ This repository contains a script that automates password retrieval and rotation
 
 ---
 
+## How This Works
+
+- The script uses the provided CyberArk account and its stored encrypted password to connect to the PVWA API.
+- After a successful login, the script retrieves the account password that needs to be updated on the third-party service.
+- The script then updates the password using the third-party service's API.
+- Finally, the script updates the password of the CyberArk account it used to connect, generates a new password, and stores it in the encrypted password file.
+
+---
+
 ## Security & Best Practices
 
 - Never hardcode credentials in the script; use environment variables or secure vaults.
